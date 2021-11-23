@@ -7,3 +7,10 @@ target_link_libraries(sample1_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES
 add_test(
     NAME sample1_unittest 
     COMMAND sample1_unittest)
+
+
+add_executable(sample2_unittest sample2_unittest.cc)
+target_link_libraries(sample2_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} sample2)
+add_test(
+    NAME sample2_unittest 
+    COMMAND sample2_unittest)
