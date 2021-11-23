@@ -3,8 +3,11 @@ project(gflags_demo VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# include(CTest)
-# enable_testing()
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+
+include(CTest)
+enable_testing()
 
 find_package(gflags REQUIRED)
 
@@ -13,10 +16,37 @@ add_executable(gflags_demo gflags_demo.cpp)
 if(gflags_FOUND)
     message(STATUS "gflags_INCLUDE_DIR: " ${gflags_INCLUDE_DIR})
     message(STATUS "gflags_LIBRARIES: " ${gflags_LIBRARIES})
-    include_directories($gflags_INCLUDE_DIR)
+    include_directories(${gflags_INCLUDE_DIR})
     target_link_libraries(gflags_demo ${gflags_LIBRARIES})
 endif(gflags_FOUND)
 
+add_executable(gtest_demo gtest_demo.cpp)
+
+find_package(GTest REQUIRED)
+if(GTest_FOUND)
+    message(${GTEST_LIBRARIES})
+    message(${GTEST_MAIN_LIBRARIES})
+    include_directories(${GTEST_INCLUDE_DIR})
+    target_link_libraries(gtest_demo ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+endif(GTest_FOUND)
+
+include_directories(${CMAKE_SOURCE_DIR}/include)
+add_subdirectory(src)
+
+# CTest related
+add_test(
+    NAME gtest_demo
+    COMMAND gtest_demo
+)
+
+option(BUILD_TESTS "Build unittests in tests/" ON)
+
+if(BUILD_TESTS)
+    add_executable(sample1_unittest tests/sample1_unittest.cc)
+    target_link_libraries(sample1_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} sample1)
+    # target_include_directories(sample1_unittest PRIVATE ${CMAKE_SOURCE_DIR}/include)
+    add_test(sample1_unittest ${EXECUTABLE_OUTPUT_PATH}/sample1_unittest)
+endif(BUILD_TESTS)
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
