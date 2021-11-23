@@ -34,3 +34,11 @@ add_test(NAME sample7_unittest COMMAND sample7_unittest)
 add_executable(sample8_unittest sample8_unittest.cc)
 target_link_libraries(sample8_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 add_test(NAME sample8_unittest COMMAND sample8_unittest)
+
+add_executable(sample9_unittest sample9_unittest.cc)
+target_link_libraries(sample9_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+add_test(NAME sample9_unittest COMMAND sample9_unittest)
+
+add_executable(sample10_unittest sample10_unittest.cc)
+target_link_libraries(sample10_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+add_test(NAME sample10_unittest COMMAND sample10_unittest)
