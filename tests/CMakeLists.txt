@@ -14,3 +14,7 @@ add_test(NAME sample2_unittest COMMAND sample2_unittest)
 add_executable(sample3_unittest sample3_unittest.cc)
 target_link_libraries(sample3_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 add_test(NAME sample3_unittest COMMAND sample3_unittest)
+
+add_executable(sample4_unittest sample4_unittest.cc)
+target_link_libraries(sample4_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} sample4)
+add_test(NAME sample4_unittest COMMAND sample4_unittest)
