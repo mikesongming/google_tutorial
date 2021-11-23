@@ -42,10 +42,7 @@ add_test(
 option(BUILD_TESTS "Build unittests in tests/" ON)
 
 if(BUILD_TESTS)
-    add_executable(sample1_unittest tests/sample1_unittest.cc)
-    target_link_libraries(sample1_unittest ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} sample1)
-    # target_include_directories(sample1_unittest PRIVATE ${CMAKE_SOURCE_DIR}/include)
-    add_test(sample1_unittest ${EXECUTABLE_OUTPUT_PATH}/sample1_unittest)
+    add_subdirectory(tests)
 endif(BUILD_TESTS)
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
