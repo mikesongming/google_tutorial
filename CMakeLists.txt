@@ -30,6 +30,13 @@ if(GTest_FOUND)
     target_link_libraries(gtest_demo ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 endif(GTest_FOUND)
 
+find_package(GLOG REQUIRED)
+if(GLOG_FOUND)
+    message(" " ${GLOG_DIR})
+    add_executable(glog_demo glog_demo.cpp)
+    target_link_libraries(glog_demo glog::glog)
+endif(GLOG_FOUND)
+
 include_directories(${CMAKE_SOURCE_DIR}/include)
 add_subdirectory(src)
 
